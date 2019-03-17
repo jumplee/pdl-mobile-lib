@@ -22,3 +22,22 @@ loadScript
 promise   移动端全部支持，android4.4+  ios8+
 
 [promise 兼容性](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Promise#%E6%B5%8F%E8%A7%88%E5%99%A8%E5%85%BC%E5%AE%B9%E6%80%A7)
+
+
+## 开发
+
+下载git包
+
+环境安装
+
+```
+npm install
+```
+
+打包
+
+```
+npm run build
+```
+
+

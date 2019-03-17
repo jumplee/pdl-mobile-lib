@@ -1,0 +1,28 @@
+{
+  "name": "pdl-mobile-lib",
+  "version": "1.0.0",
+  "description": "胖东来移动端展示页面基础库，方便前端开发。",
+  "main": "index.js",
+  "directories": {
+    "lib": "lib"
+  },
+  "scripts": {
+    "build": "node ./node_modules/gulp/bin/gulp.js "
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jumplee/pdl-mobile-lib.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/jumplee/pdl-mobile-lib/issues"
+  },
+  "homepage": "https://github.com/jumplee/pdl-mobile-lib#readme",
+  "devDependencies": {
+    "gulp": "^4.0.0",
+    "gulp-concat": "^2.6.1",
+    "gulp-rename": "^1.4.0",
+    "gulp-uglify": "^3.0.2"
+  }
+}
