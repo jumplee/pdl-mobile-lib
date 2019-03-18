@@ -1,3 +1,6 @@
+// 来源
+// https://github.com/xiongwilee/blog/issues/8
+
 (function (root) {
     function loadJs(url) {
         return new Promise(function (resolve, reject) {

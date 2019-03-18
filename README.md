@@ -3,9 +3,9 @@
 
 ## 集成以下框架
 
-zepto
+jquery3
 
-https://zeptojs.com/
+[jquery3 兼容性说明,移动端](https://jquery.com/browser-support/)
 
 template7
 
