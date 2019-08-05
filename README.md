@@ -16,6 +16,11 @@ loadScript
 [优雅加载js](https://github.com/xiongwilee/blog/issues/8)
 
 
+# 不再集成
+[fastclick](https://github.com/ftlabs/fastclick)
+As of late 2015 most mobile browsers - notably Chrome and Safari - no longer have a 300ms touch delay
+官方文档已经体现2015年的浏览器几乎都不再有延迟，所以可以移除了。
+
 
 ## 依赖
 
