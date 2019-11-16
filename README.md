@@ -53,3 +53,5 @@ promise   移动端全部支持，android4.4+  ios8+
 [weflow](https://weflow.io/)
 
 开发流程工具，对前端开发效率和规范化很有帮助
+
+ext文件夹中是一些常用的函数，可以需要的时候使用，利用weflow可以自动打包成公共文件使用
