@@ -7,3 +7,14 @@ function getParam(name) {
     var r = newSearch.match(reg);
     if (r != null) return decodeURI(r[2]); return null;
 }
+
+function isWeChatBrowser(){
+    var ua = navigator.userAgent.toLowerCase();
+    if(ua.match(/MicroMessenger/i)=="micromessenger") {
+        return true;
+    } else {
+        return false;
+    }
+}
+
+window._pdl_mobile_lib_version='1.0.1'

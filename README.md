@@ -22,11 +22,7 @@ As of late 2015 most mobile browsers - notably Chrome and Safari - no longer hav
 官方文档已经体现2015年的浏览器几乎都不再有延迟，所以可以移除了。
 
 
-## 依赖
 
-promise   移动端全部支持，android4.4+  ios8+
-
-[promise 兼容性](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Promise#%E6%B5%8F%E8%A7%88%E5%99%A8%E5%85%BC%E5%AE%B9%E6%80%A7)
 
 
 ## 开发
@@ -46,3 +42,14 @@ npm run build
 ```
 
 
+## 推荐使用
+
+promise   移动端全部支持，android4.4+  ios8+
+
+[promise 兼容性](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Promise#%E6%B5%8F%E8%A7%88%E5%99%A8%E5%85%BC%E5%AE%B9%E6%80%A7)
+
+---
+
+[weflow](https://weflow.io/)
+
+开发流程工具，对前端开发效率和规范化很有帮助

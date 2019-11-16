@@ -1,61 +1,96 @@
-// 来源
-// https://github.com/xiongwilee/blog/issues/8
+/**
+ * 动态加载js
+ * 来源 https://github.com/xiongwilee/blog/issues/8
+ * 使用文章第四种方法，不使用promise避免对promise的依赖
+ */
 
-(function (root) {
-    function loadJs(url) {
-        return new Promise(function (resolve, reject) {
-            var script = document.createElement('script');
-            script.type = "text/javascript";
+Loader = (function() {
 
-            if (script.readyState) { //IE
-                script.onreadystatechange = function () {
-                    if (script.readyState == "loaded" ||
-                        script.readyState == "complete") {
-                        script.onreadystatechange = null;
-                        resolve('success: ' + url);
-                    }
-                };
-            } else { //Others
-                script.onload = function () {
-                    resolve('success: ' + url);
-                };
-            }
+    var group_queue = [];      // group list
+    var current_group_finished = 0;
+    var finish_callback;
+    var finish_context;
 
-            script.onerror = function () {
-                reject(Error(url + 'load error!'));
+    var loadFinished = function() {
+        current_group_finished ++;
+        if (current_group_finished == group_queue[0].length) {
+            next_group();
+            loadGroup();
+        }
+    };
+
+    var next_group = function() {
+        group_queue.shift();
+    };
+
+    var loadError = function(oError) {
+        console.error("The script " + oError.target.src + " is not accessible.");
+    };
+
+    var loadScript = function(url) {
+        console.log("load "+url);
+        var script = document.createElement('script');
+        script.type = "text/javascript";
+
+        if (script.readyState){  //IE
+            script.onreadystatechange = function() {
+                if (script.readyState == "loaded" ||
+                    script.readyState == "complete") {
+                    script.onreadystatechange = null;
+                    loadFinished();
+                }
             };
+        } else {  //Others
+            script.onload = function(){
+                loadFinished();
+            };
+        }
 
-            script.src = url + '?' + 'time=' + Date.parse(new Date());
-            document.body.appendChild(script);
+        script.onerror = loadError;
 
-        });
-    }
+        script.src = url+'?'+'time='+Date.parse(new Date());
+        document.body.appendChild(script);
+    };
 
-    var cssLinkCache = {};
+    var loadGroup = function() {
+        if (group_queue.length == 0) {
+            finish_callback.call(finish_context);
+            return;
+        }
+        current_group_finished = 0;
+        for (var idx=0; idx < group_queue[0].length; idx++) {
+            loadScript(group_queue[0][idx]);
+        }
+    };
 
-    function loadCss(url) {
-        return new Promise(function (resolve, reject) {
-            //避免重复
-            if (typeof cssLinkCache[url.toString()] !== 'undefined') {
-                resolve()
-            } else {
-                var link = document.createElement("link");
-                link.setAttribute("rel", "stylesheet");
-                link.setAttribute("type", "text/css");
-                link.setAttribute("href", url);
-                document.head.insertBefore(link, document.getElementsByTagName('link')[0]);
-                link.onload = function () {
-                    cssLinkCache[url.toString()] = 1;
-                    resolve()
-                }
-                link.onerror = function () {
-                    reject()
-                }
-            }
-        });
+    var addGroup = function(url_array) {
+        if (url_array.length > 0) {
+            group_queue.push(url_array);
+        }
+    };
 
+    var fire = function(callback, context) {
+        finish_callback = callback || function() {};
+        finish_context = context || {};
+        loadGroup();
+    };
 
-    }
-    root.loadCss = loadCss;
-    root.loadJs = loadJs;
-})(window)
+    var instanceAPI = {
+        load : function() {
+            addGroup([].slice.call(arguments));
+            return instanceAPI;
+        },
+
+        done : fire,
+    };
+    return instanceAPI;
+
+})();
+function getCss(url,callback){
+    var link=document.createElement("link");
+    link.setAttribute("rel", "stylesheet");
+    link.setAttribute("type", "text/css");
+    link.setAttribute("href", url);
+    document.getElementsByTagName("head")[0].appendChild(link);
+    link.onload=callback;
+}

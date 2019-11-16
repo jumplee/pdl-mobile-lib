@@ -1,6 +1,6 @@
 {
   "name": "pdl-mobile-lib",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "胖东来移动端展示页面基础库，方便前端开发。",
   "main": "index.js",
   "directories": {
