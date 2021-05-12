@@ -1,5 +1,5 @@
 # pdl-mobile-lib
-一个基础js代码库，只集成最常用的功能，主要用于移动端展示网站。包含功能dom操作，ajax,类handlebar模版，加载js
+一个基础js代码库，只集成最常用的功能，主要用于现代浏览器展示网站。包含功能dom操作，ajax,类handlebar模版，加载js
 
 ## 集成以下框架
 
